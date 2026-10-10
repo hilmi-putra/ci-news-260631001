@@ -1,16 +1,22 @@
 <?= $this->extend('layout/page_layout') ?>
 <?= $this->section('title') ?>About - CI News<?= $this->endSection() ?>
 <?= $this->section('content') ?>
-<p class="page-kicker">About / Widyatama News</p>
-<div class="split-page">
-    <div>
-        <h1 class="page-title">A clearer way<br>to tell stories</h1>
+<div class="row">
+    <div class="col-lg-8">
+        <h2>Tentang CI News</h2>
+        <p class="lead">Portal berita sederhana dengan CodeIgniter 4.</p>
+        <p>Halaman ini menggunakan view layout untuk membagikan navbar, header, dan footer di seluruh halaman.</p>
+        <p>Komponen berita di sidebar dibuat sebagai View Cell agar dapat menerima parameter dan mengambil data dari
+            database.</p>
     </div>
-    <div>
-        <h2>About CI News</h2>
-        <p>CI News adalah contoh aplikasi portal berita sederhana yang dibuat dengan CodeIgniter 4.</p>
-        <p>Halaman ini menggunakan page layout editorial yang sama dengan Home, Contact, FAQs, dan News agar seluruh
-            pengalaman terasa menyatu.</p>
+    <div class="col-lg-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Informasi</h5>
+                <p class="card-text mb-0">Pemrograman Web Lanjut</p>
+                <small class="text-muted">Universitas Widyatama</small>
+            </div>
+        </div>
     </div>
 </div>
 <?= $this->endSection() ?>
