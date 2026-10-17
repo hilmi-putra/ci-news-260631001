@@ -7,8 +7,24 @@ use CodeIgniter\Exceptions\PageNotFoundException;
 
 class NewsAdmin extends BaseController
 {
+    /**
+     * Memastikan user sudah login sebelum mengakses method CRUD
+     */
+    private function checkAuth()
+    {
+        if (!session()->get('logged_in')) {
+            session()->setFlashdata('error', 'Silakan login terlebih dahulu untuk mengakses fitur CRUD.');
+            return redirect()->to(base_url('login'));
+        }
+        return null;
+    }
+
     public function index()
     {
+        if ($redirect = $this->checkAuth()) {
+            return $redirect;
+        }
+
         $news = new NewsModel();
         $data['newses'] = $news->findAll();
         return view('admin_list_news', $data);
@@ -18,6 +34,10 @@ class NewsAdmin extends BaseController
 
     public function preview($id)
     {
+        if ($redirect = $this->checkAuth()) {
+            return $redirect;
+        }
+
         $news = new NewsModel();
         $data['news'] = $news->where('id', $id)->first();
 
@@ -31,6 +51,10 @@ class NewsAdmin extends BaseController
 
     public function create()
     {
+        if ($redirect = $this->checkAuth()) {
+            return $redirect;
+        }
+
         helper(['url', 'text']);
 
         // lakukan validasi
@@ -41,14 +65,16 @@ class NewsAdmin extends BaseController
         // jika data valid, simpan ke database
         if ($isDataValid) {
             $news = new NewsModel();
+            $author = session()->get('name') ?: 'Hilmi Abdurrafi';
+
             $news->insert([
                 "title"   => $this->request->getPost('title'),
                 "content" => $this->request->getPost('content'),
                 "status"  => $this->request->getPost('status'),
-                "author"  => 'Hilmi Abdurrafi',
+                "author"  => $author,
                 "slug"    => url_title($this->request->getPost('title'), '-', true)
             ]);
-            return redirect()->to('admin/news');
+            return redirect()->to(base_url('admin/news'));
         }
 
         // tampilkan form create
@@ -59,6 +85,10 @@ class NewsAdmin extends BaseController
 
     public function edit($id)
     {
+        if ($redirect = $this->checkAuth()) {
+            return $redirect;
+        }
+
         // ambil artikel yang akan diedit
         $news = new NewsModel();
         $data['news'] = $news->where('id', $id)->first();
@@ -82,7 +112,7 @@ class NewsAdmin extends BaseController
                 "content" => $this->request->getPost('content'),
                 "status"  => $this->request->getPost('status')
             ]);
-            return redirect()->to('admin/news');
+            return redirect()->to(base_url('admin/news'));
         }
 
         // tampilkan form edit
@@ -93,8 +123,12 @@ class NewsAdmin extends BaseController
 
     public function delete($id)
     {
+        if ($redirect = $this->checkAuth()) {
+            return $redirect;
+        }
+
         $news = new NewsModel();
         $news->delete($id);
-        return redirect()->to('admin/news');
+        return redirect()->to(base_url('admin/news'));
     }
 }

@@ -1,0 +1,60 @@
+<?= $this->extend('layouts/main') ?>
+
+<?= $this->section('content') ?>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-4 offset-md-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h4 class="text-center" style="font-weight: bold;">REGISTER</h4>
+                    <hr>
+                    <?php if (session()->getFlashdata('error')): ?>
+                        <div class="alert alert-danger">
+                            <?php
+                            $error = session()->getFlashdata('error');
+                            if (is_array($error)) {
+                                foreach ($error as $err) {
+                                    echo esc($err) . '<br>';
+                                }
+                            } else {
+                                echo esc($error);
+                            }
+                            ?>
+                        </div>
+                    <?php endif; ?>
+
+                    <?= validation_list_errors() ?>
+
+                    <?= form_open('register'); ?>
+                    <div class="form-group">
+                        <label for="name">Nama</label>
+                        <input type="text" name="name" class="form-control" value="<?= old('name') ?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" class="form-control" value="<?= old('email') ?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" class="form-control" placeholder="Minimal 8 karakter"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary btn-block">Register</button>
+                    </div>
+                    <?= form_close(); ?>
+                </div>
+
+            </div>
+            <div class="text-center mt-2">
+                Sudah punya akun? <a href="<?php echo base_url('login'); ?>">Silakan login.</a>
+            </div>
+            <div class="text-center mt-2">
+                <a href="<?php echo base_url(); ?>">&larr; Kembali ke Beranda</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?= $this->endSection() ?>

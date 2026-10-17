@@ -7,21 +7,26 @@
         <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="<?= base_url('admin/news') ?>">News</a>
+                    <a class="nav-link" href="<?= base_url('admin/news') ?>">News (CRUD)</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= base_url('dashboard') ?>">Dashboard</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="<?= base_url('news') ?>" target="_blank">Lihat Website &rarr;</a>
                 </li>
             </ul>
-            <ul class="navbar-nav">
+            <ul class="navbar-nav align-items-center">
                 <li class="nav-item">
-                    <a href="<?= base_url('admin/news/new') ?>" class="btn btn-primary mr-3">+ New Post</a>
+                    <a href="<?= base_url('admin/news/new') ?>" class="btn btn-primary btn-sm mr-3">+ New Post</a>
+                </li>
+                <li class="nav-item mr-3">
+                    <span class="navbar-text text-light" style="font-size: 13px;">
+                        User: <strong><?= esc(session()->get('name') ?? 'Admin') ?></strong>
+                    </span>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?= base_url('admin/setting') ?>">Setting</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?= base_url('auth/logout') ?>">Logout</a>
+                    <a class="btn btn-outline-danger btn-sm" href="<?= base_url('logout') ?>">Logout</a>
                 </li>
             </ul>
         </div>
