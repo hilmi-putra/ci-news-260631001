@@ -8,6 +8,7 @@
             <h1 class="h2 font-weight-bold mb-2">
                 Selamat datang, <?= esc(session()->get('name') ?? 'Admin') ?>
             </h1>
+            <p class="lead mb-0">Hilmi Abdurrafi | NPM 260631001</p>
             <p class="lead mb-0">Kelola konten dan data aplikasi dari satu tempat.</p>
         </div>
         <div class="col-md-4 text-md-right mt-4 mt-md-0">
