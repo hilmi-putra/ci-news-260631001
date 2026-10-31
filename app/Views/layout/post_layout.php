@@ -15,6 +15,7 @@
 
 <body>
     <?= $this->include('layout/navbar') ?>
+    <?= $this->include('layout/header') ?>
 
     <main class="container my-5 page-content">
         <div class="row">
