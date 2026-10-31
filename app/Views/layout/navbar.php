@@ -12,10 +12,12 @@
                 <a class="nav-item nav-link" href="<?= base_url('contact') ?>">Contact</a>
                 <a class="nav-item nav-link" href="<?= base_url('faqs') ?>">FAQs</a>
                 <a class="nav-item nav-link" href="<?= base_url('news') ?>">News</a>
+                <a class="nav-item nav-link" href="<?= base_url('office') ?>">Office</a>
             </div>
             <div class="navbar-nav ml-auto align-items-center">
                 <?php if (session()->get('logged_in')) : ?>
                     <a class="nav-item nav-link text-warning" href="<?= base_url('admin/news') ?>">Panel CRUD</a>
+                    <a class="nav-item nav-link text-success" href="<?= base_url('admin/offices') ?>">Office CRUD</a>
                     <a class="nav-item nav-link text-info" href="<?= base_url('dashboard') ?>">Dashboard</a>
                     <span class="navbar-text mx-2 text-light small">
                         Hi, <strong><?= esc(session()->get('name')) ?></strong>

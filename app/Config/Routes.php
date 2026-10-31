@@ -27,6 +27,9 @@ $routes->group('login', static function ($routes) {
 // Dashboard Route (QadrLabs)
 $routes->get('/dashboard', 'Dashboard::index');
 
+// Public Office page (read-only)
+$routes->get('/office', 'Office::index');
+
 // Logout Route (QadrLabs)
 $routes->group('logout', static function ($routes) {
     $routes->get('/', 'LogoutController::index');
@@ -39,4 +42,9 @@ $routes->group('admin', ['filter' => 'auth'], static function ($routes) {
     $routes->add('news/new', 'NewsAdmin::create');
     $routes->add('news/(:segment)/edit', 'NewsAdmin::edit/$1');
     $routes->get('news/(:segment)/delete', 'NewsAdmin::delete/$1');
+    
+    $routes->get('offices', 'Office::adminIndex');
+    $routes->add('offices/new', 'Office::create');
+    $routes->add('offices/(:segment)/edit', 'Office::edit/$1');
+    $routes->get('offices/(:segment)/delete', 'Office::delete/$1');
 });
